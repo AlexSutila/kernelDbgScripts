@@ -1,3 +1,5 @@
+`sudo apt-get install qemu-system`
+
 ## Scripts
 | Script | Purpose |
 |----------|----------|
@@ -10,7 +12,7 @@
 Running `mkrootfs.sh` should provide a sufficient `rootfs.cpio.gz` to at least get something that boots. As mentioned earlier, `mkrootfs.sh` uses and builds busybox from source and then makes the necessary directory structure needed to boot. A menuconfig menu will apear during this process, be sure to compile it as a static binary (see below).
 ![image](https://github.com/AlexSutila/kernelDbgScripts/assets/96510931/bb4abd80-e312-4eb6-94e5-c6c96777aec8)
 ![image](https://github.com/AlexSutila/kernelDbgScripts/assets/96510931/e837ab22-5032-465d-8f14-eea975832fbd)
-If extra stuff is needed, it can be copied into the rootfs folder before it is compressed.
+If extra stuff is needed, it can be copied into the rootfs folder before it is compressed. Life will be a lot easier if binaries copied into the rootfs can be compiled from source as static binaries.
 
 ## Additional Notes
 ### During kernel compilation
@@ -20,6 +22,8 @@ Compile the kernel with the following flags set as follows (or make sure they ar
 | CONFIG_DEBUG_INFO | y |
 | CONFIG_GDB_SCRIPTS | y |
 | CONFIG_KGDB | y |
+### After kernel compilation
+Run `make scripts_gdb` in the kernel source root.
 ### During debugging
 Once in GDB, the `lx-symbols` is particularly useful for refreshing debug symbols as you load (or unload) modules while in QEMU.
 #### Loading a dummy hello world module
