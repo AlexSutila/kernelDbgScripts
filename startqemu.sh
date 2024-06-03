@@ -11,8 +11,7 @@ fi
 BZIMAGE_PATH="$1"
 ROOTFS_PATH="$2" # path to rootfs.cpio.gz
 MEM="512M"
-#qemu-system-x86_64 -s -S -M pc -m "$MEM" -kernel "$BZIMAGE_PATH" 	\
-qemu-system-x86_64 -M pc -m "$MEM" -kernel "$BZIMAGE_PATH" 	\
+qemu-system-x86_64 -s -S -M pc -m "$MEM" -kernel "$BZIMAGE_PATH" 	\
 	-initrd "$ROOTFS_PATH" 						\
 	-append "root=/dev/mem console=ttyS0 nokaslr"			\
 	-nographic
